@@ -17,11 +17,11 @@ Keys
 * MOUSE:  control the camera view in free camera mode
 * ARROWS: move the camera in free camera mode
 * NUMPAD NUMBERS: teleport to a scene in free camera mode
-	1 - island scene
-	2 - shadow mapping scene
-	3 - reflection/refraction scene
-	4 - toon mapping scene
-	5 - relief mapping and fur scene
+	1. island scene
+	2. shadow mapping scene
+	3. reflection/refraction scene
+	4. toon mapping scene
+	5. relief mapping and fur scene
 
 * +/-:   speed up/down the moving speed of the camera (and of the world)
 
