@@ -25,7 +25,7 @@ void main()
 		int sum = 0;
 		for(int i=-kernel_size; i<=kernel_size; i++) {
 			vec4 value = texture2D(texScreen, uv + vec2(pas.x*i, 0.0));
-			int factor = kernel_size+1 - (int)abs((float)i);
+			int factor = kernel_size+1 - abs(i);
 			color += value * factor;
 			sum += factor;
 		}
@@ -38,7 +38,7 @@ void main()
 		int sum = 0;
 		for(int i=-kernel_size; i<=kernel_size; i++) {
 			vec4 value = texture2D(texScreen, uv + vec2(0.0, pas.y*i));
-			int factor = kernel_size+1 - (int)abs((float)i);
+			int factor = kernel_size+1 - abs(i);
 			color += value * factor;
 			sum += factor;
 		}

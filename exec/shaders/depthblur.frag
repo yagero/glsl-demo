@@ -4,12 +4,12 @@ uniform sampler2D texScreen, texDepth;
 
 uniform int screenWidth;
 uniform int screenHeight;
-/*
+
 // static array initialisation doesn't compile on ATI gpu
-float mask11_2[] = { 1.0/11.0, 1.0/11.0, 1.0/11.0, 1.0/11.0, 1.0/11.0, 1.0/11.0, 1.0/11.0, 1.0/11.0, 1.0/11.0, 1.0/11.0, 1.0/11.0};
-float mask5_2[] = { 1.0/5.0, 1.0/5.0, 1.0/5.0, 1.0/5.0, 1.0/5.0};
-float mask3_2[] = { 1.0/3.0, 1.0/3.0, 1.0/3.0};
-*/
+#define MASK11 (1.0/11.0)
+#define MASK5  (1.0/5.0)
+#define MASK3  (1.0/3.0)
+
 uniform bool bHorizontal;
 
 
@@ -18,11 +18,11 @@ vec4 convolH(float value, int size)
 	float stepX = 1.0/screenWidth;
 	vec4 color = vec4(0.0f, 0.0f, 0.0f, 0.0f);
 	int k = (size/2);
-	//int ind = 0;
+
 	for(int i=-k; i<=k; i++)
-			color += value * texture2D(texScreen, gl_TexCoord[0].st + vec2(i*stepX, 0));
+		color += value * texture2D(texScreen, gl_TexCoord[0].st + vec2(i*stepX, 0));
 				
-			return color;
+	return color;
 }
 
 vec4 convolV(float value, int size)
@@ -30,11 +30,11 @@ vec4 convolV(float value, int size)
 	float stepY = 1.0/screenHeight;
 	vec4 color = vec4(0.0f, 0.0f, 0.0f, 0.0f);
 	int k = (size/2);
-	//int ind = 0;
+
 	for(int i=-k; i<=k; i++)
-			color += value * texture2D(texScreen, gl_TexCoord[0].st + vec2(0, i*stepY));
+		color += value * texture2D(texScreen, gl_TexCoord[0].st + vec2(0, i*stepY));
 				
-			return color;
+	return color;
 }
 
 vec4 Pdc(vec4 color)
@@ -45,11 +45,11 @@ vec4 Pdc(vec4 color)
 		vec4 color;
 		if(bHorizontal)
 		{
-			color = convolH(1.0/11.0,11);
+			color = convolH(MASK11, 11);
 		}
 		else
 		{
-			color = convolV(1.0/11.0,11);
+			color = convolV(MASK11, 11);
 		}
 		
 		return color;
@@ -59,11 +59,11 @@ vec4 Pdc(vec4 color)
 		vec4 color;
 		if(bHorizontal)
 		{
-			color = convolH(1.0/5.0,5);
+			color = convolH(MASK5, 5);
 		}
 		else
 		{
-			color = convolV(1.0/5.0,5);
+			color = convolV(MASK5, 5);
 		}
 		
 		return color;
@@ -73,11 +73,11 @@ vec4 Pdc(vec4 color)
 		vec4 color;
 		if(bHorizontal)
 		{
-			color = convolH(1.0/3.0,3);
+			color = convolH(MASK3, 3);
 		}
 		else
 		{
-			color = convolV(1.0/3.0,3);
+			color = convolV(MASK3, 3);
 		}
 		
 		return color;
