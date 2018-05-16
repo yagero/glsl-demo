@@ -25,6 +25,8 @@ Keys
 
 * +/-:   speed up/down the moving speed of the camera (and of the world)
 
+* ZQSD:  change sun position (in the island scene)
+
 * A:     enable/disable anaglyph view
 * B:     enable/disable bloom post effect
 * V:     enable/disable vignette post effect
